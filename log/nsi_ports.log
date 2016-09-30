@@ -1,0 +1,25 @@
+DEBUG - 2016-09-30 12:22:23,912 - nsi_ports - Config is {
+    "port":9000,
+    "dds_service": "https://agg.netherlight.net2/dds"
+}
+
+INFO - 2016-09-30 12:22:23,913 - nsi_ports - restarting the module
+INFO - 2016-09-30 12:22:23,952 - werkzeug -  * Running on http://127.0.0.1:9000/ (Press CTRL+C to quit)
+DEBUG - 2016-09-30 12:22:41,804 - port_retrieval - Traceback (most recent call last):
+  File "/root/nsi_ports/src/port_retrieval.py", line 33, in get_nsi_topology
+    data = urllib2.urlopen(dds_service_url).read()
+  File "/usr/lib64/python2.6/urllib2.py", line 126, in urlopen
+    return _opener.open(url, data, timeout)
+  File "/usr/lib64/python2.6/urllib2.py", line 391, in open
+    response = self._open(req, data)
+  File "/usr/lib64/python2.6/urllib2.py", line 409, in _open
+    '_open', req)
+  File "/usr/lib64/python2.6/urllib2.py", line 369, in _call_chain
+    result = func(*args)
+  File "/usr/lib64/python2.6/urllib2.py", line 1198, in https_open
+    return self.do_open(httplib.HTTPSConnection, req)
+  File "/usr/lib64/python2.6/urllib2.py", line 1165, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno -2] Name or service not known>
+
+INFO - 2016-09-30 12:22:41,809 - werkzeug - 127.0.0.1 - - [30/Sep/2016 12:22:41] "GET /nsi/domains-full HTTP/1.1" 200 -
