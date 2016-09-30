@@ -74,14 +74,16 @@ Needs Python and Flask installed:
     1. Install python libraries by pip:
         pip install Flask Flask-Autodoc
         
-
+2.2 Download 'nsi_ports' from github
+    
+    git clone https://github.com/damomeen/nsi_ports.git
 
 
 3. Setup
 
     1. create configuration file from an example
         From root of the project do
-        cd ./etc
+        cd ./nsi_ports/etc
         cp nsi_ports.conf.example nsi_ports.conf
         
     2. edit nsi_ports.conf
@@ -91,12 +93,12 @@ Needs Python and Flask installed:
             "dds_service": "https://agg.netherlight.net2/dds"
         }
     
-    3. add right to execute ./src/nsi_ports
-        chmod +x ./src/nsi_ports
+    3. add right to execute ./nsi_ports/src/nsi_ports
+        chmod +x ./nsi_ports/src/nsi_ports
         
-    4. add ./src to PATH environment variable in order to allow run 'nsi_ports' anywhere.
+    4. add ./nsi_ports/src to PATH environment variable in order to allow run 'nsi_ports' anywhere.
         Make this permament in '.bashrc', '.bash_profile', etc.
-        cd ./src
+        cd ./nsi_ports/src
         export PATH=$PATH:`pwd`
         
         
