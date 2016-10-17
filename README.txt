@@ -116,8 +116,8 @@ Needs Python and Flask installed:
         http://localhost:9000/nsi/domains/doc
         
     4. make testing usage of REST API:
-        curl http://localhost:9000/nsi/domains
-        curl http://localhost:9000/nsi/domains-full
+        curl http://localhost:9001/nsi/domains
+        curl http://localhost:9001/nsi/domains-full
         
     5. Enable default TCP ports in the firewall:
         - 9001: HTTP REST/API service
