@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys, os, logging, time
+from logging.handlers import RotatingFileHandler
 from optparse import OptionParser
 from threading import Lock
 import json
@@ -57,14 +58,14 @@ if __name__ == "__main__":
 
     
     # optional command-line arguments processing
-    usage="usage: %prog start|stop|restart [options]"
+    usage="usage: %prog [options] start|stop|restart"
     parser = OptionParser(usage=usage, version="%prog " + __version__)
-    parser.add_option("-p", "--pidDir", dest="pidDir", default='/tmp', help="directory for pid file")
-    parser.add_option("-l", "--logDir", dest="logDir", default='%s/log' % nsi_ports_location, help="directory for log file")
-    parser.add_option("-c", "--confDir", dest="confDir", default='%s/etc' % nsi_ports_location,    help="directory for config file")
+    parser.add_option("-p", "--pidDir", dest="pidDir", default='/tmp', help="directory for pid file (default: ./tmp/)")
+    parser.add_option("-l", "--logDir", dest="logDir", default='%s/log' % nsi_ports_location, help="directory for log file (default: ./nsi_ports/log/)")
+    parser.add_option("-c", "--confDir", dest="confDir", default='%s/etc' % nsi_ports_location,    help="directory for config file (default: ./tfts2/etc/)")
     options, args = parser.parse_args()
 
-    if 'start' in args[0]:
+    if 'start' in args[0] and 'start' in args[0]:
         # clear log file
         try:
             os.remove("%s/%s.log" % (options.logDir, MODULE_NAME))
@@ -72,17 +73,20 @@ if __name__ == "__main__":
             pass          
 
     # creation of logging infrastructure
-    logging.basicConfig(filename = "%s/%s.log" % (options.logDir, MODULE_NAME),
-                        level    = logging.DEBUG,
-                        format   = "%(levelname)s - %(asctime)s - %(name)s - %(message)s")
-    logger = logging.getLogger(MODULE_NAME)
+    handler = RotatingFileHandler("%s/%s.log" % (options.logDir, MODULE_NAME), maxBytes=200000000, backupCount=5)
+    handler.setFormatter(logging.Formatter("%(levelname)s - %(asctime)s - %(name)s - %(message)s"))
+    handler.setLevel(logging.DEBUG)
+
+    logger = logging.getLogger()
+    logger.addHandler(handler)
+    logger.setLevel(logging.DEBUG)
 
     # starting module's daemon
     daemon = ModuleDaemon(MODULE_NAME, options)
     
     # mandatory command-line arguments processing
     if len(args) == 0:
-        print usage
+        parser.print_help()
         sys.exit(2)
     if 'start' == args[0]:
         print "\n%s is located in %s" % (MODULE_NAME, nsi_ports_location)   
@@ -100,6 +104,6 @@ if __name__ == "__main__":
         daemon.restart()
     else:
         print "Unknown command"
-        print usage
+        parser.print_help()
         sys.exit(2)
 sys.exit(0)
