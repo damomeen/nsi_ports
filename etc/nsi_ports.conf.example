@@ -1,4 +1,4 @@
 {
     "port":9001,
-    "dds_service": "https://agg.netherlight.net2/dds"
+    "dds_service": "https://agg.netherlight.net/dds"
 }

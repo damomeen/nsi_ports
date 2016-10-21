@@ -9,7 +9,7 @@ setup(name='nsi_ports',
       description = ("Python daemon which exposes Geant BoD/NSI ports "
                                    "over HTTP/REST api."),
       keywords = 'Geant BoD NSI REST',
-      install_requires=['flask'],
+      install_requires=['flask', 'xmltodict'],
       include_package_data = True,
       package_data={
         'nsi_ports': ['nsi-ports.conf.example']

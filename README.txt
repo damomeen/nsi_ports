@@ -47,7 +47,20 @@ Documents presenting OGF NSI Topology Service:
             1. HTTP code 200 and JSON list of URN identifiers of NSI ports in the domain
                     (eg.: ["PORT_TO_PIONIER", "felix-ge-1-0-9'", "MDVPN__lab__port"])
                     
-    3. GET /nsi/domains-full
+    3. GET /nsi/domains/<domain_name>/port/<port_name>
+        Get list of vlans in given port in the domain.
+        
+        Attributes:
+            - domain_name: [string] URN identifier of of NSI domain 
+                    (eg.: 'urn:ogf:network:pionier.net.pl:2013:topology')
+            - port_name: [string] port name 
+                    (eg.: 'elix-ge-1-0-9')
+    
+        Returns:
+            1. HTTP code 200 and JSON object of VLAN properties of the port
+                    (eg.: {"vlans_in": "4-4096", "vlans_out": "4-4096")
+                    
+    4. GET /nsi/domains-full
     
         Get list of NSI domains and its ports.
         
@@ -56,7 +69,7 @@ Documents presenting OGF NSI Topology Service:
                     (eg.: {"pionier.net.pl": ["PORT_TO_PIONIER", "felix-ge-1-0-9", "host2"],
                             "heanet.ie":["HEAnet-HRB-port", "HEANET-gsn-epa-port"]})
                             
-    4. GET /nsi/domains/doc 
+    5. GET /doc 
     
         Generates HTML documentation of exposed REST API
         
@@ -70,9 +83,10 @@ Needs Python and Flask installed:
     - Python 2.7 (https://www.python.org/)
     - Flask 0.11.1 (http://flask.pocoo.org)
     - Flask-Autodoc 0.1.2 (https://github.com/acoomans/flask-autodoc)
+    - xmltodict 0.10.2 (https://pypi.python.org/pypi/xmltodict)
     
     1. Install python libraries by pip:
-        pip install Flask Flask-Autodoc
+        pip install Flask Flask-Autodoc xmltodict
         
 2.2 Download 'nsi_ports' from github
     
@@ -90,7 +104,7 @@ Needs Python and Flask installed:
     
         {
             "port":9001,
-            "dds_service": "https://agg.netherlight.net2/dds"
+            "dds_service": "https://agg.netherlight.net/dds"
         }
     
     3. add right to execute ./nsi_ports/src/nsi_ports
@@ -113,7 +127,7 @@ Needs Python and Flask installed:
         nsi_ports stop
         
     3. check REST API documentation in web browser:
-        http://localhost:9000/nsi/domains/doc
+        http://localhost:9000/doc
         
     4. make testing usage of REST API:
         curl http://localhost:9001/nsi/domains
