@@ -1,28 +1,39 @@
-DEBUG - 2016-10-21 05:20:19,915 - root - Config is {
+DEBUG - 2016-10-21 06:14:11,174 - root - Config is {
     "port":9001,
     "dds_service": "https://agg.netherlight.net/dds"
 }
 
-INFO - 2016-10-21 05:20:19,915 - root - restarting the module
-INFO - 2016-10-21 05:20:20,034 - werkzeug -  * Running on http://127.0.0.1:9001/
-WARNING - 2016-10-21 05:20:31,528 - port_retrieval - Port not found None for portgroup urn:ogf:network:krlight.net:2013:if-krlight-jgn-x
-INFO - 2016-10-21 05:20:31,813 - rest_api - Getting https://bod.acc.dlp.surfnet.nl/nsi-topology/netherlight-testbed7
-INFO - 2016-10-21 05:20:31,814 - rest_api - Getting https://southernlight.net.br:9443/NSI/southernlight.net.br:2013.nml.xml
-INFO - 2016-10-21 05:20:31,815 - rest_api - Getting http://bodportal.geant.net:8080/autobahn-ts/export/network/urn:ogf:network:geant.net:2013:topology
-INFO - 2016-10-21 05:20:31,816 - rest_api - Getting http://idc.cipo.rnp.br/rnp-topology.xml
-INFO - 2016-10-21 05:20:31,817 - rest_api - Getting https://pmri061.it.northwestern.edu:9443/NSI/icair.org:2013.nml.xml
-INFO - 2016-10-21 05:20:31,817 - rest_api - Getting https://nsi.ampath.net:9443/NSI/ampath.net:2013.nml.xml
-INFO - 2016-10-21 05:20:31,818 - rest_api - Getting https://nsa.uvalight.net:9443/NSI/uvalight.net:2013.nml.xml
-INFO - 2016-10-21 05:20:31,819 - rest_api - Getting https://bod.netherlight.net/nsi-topology/production7
-INFO - 2016-10-21 05:20:31,820 - rest_api - Getting http://ns.ps.jgn-x.jp/NSI/jgn-x_jp_2013_nml.xml
-INFO - 2016-10-21 05:20:31,820 - rest_api - Getting https://bod.surfnet.nl/nsi-topology/netherlight7
-INFO - 2016-10-21 05:20:31,821 - rest_api - Getting https://163.220.30.174:28443/NSI/aist.go.jp:2013:nml.xml
-INFO - 2016-10-21 05:20:31,821 - rest_api - Getting https://nsi0.lsanca.pacificwave.net:9443/NSI/lsanca.pacificwave.net:2016.nml.xml
-INFO - 2016-10-21 05:20:31,822 - rest_api - Getting https://opennsa.cesnet.cz:9443/NSI/czechlight.cesnet.cz:2013.nml.xml
-INFO - 2016-10-21 05:20:31,823 - rest_api - Getting https://nsi.twaren.net:9443/NSI/twaren.nchc.org:2014.nml.xml
-INFO - 2016-10-21 05:20:31,824 - rest_api - Getting https://192.87.102.20:9443/NSI/openflow.netherlight.net:2016.nml.xml
-INFO - 2016-10-21 05:20:31,842 - rest_api - Failing get https://nsa.uvalight.net:9443/NSI/uvalight.net:2013.nml.xml
-INFO - 2016-10-21 05:20:32,147 - rest_api - Failing get https://nsi.twaren.net:9443/NSI/twaren.nchc.org:2014.nml.xml
-INFO - 2016-10-21 05:20:51,827 - rest_api - Failing get https://nsi.ampath.net:9443/NSI/ampath.net:2013.nml.xml
-INFO - 2016-10-21 05:21:34,953 - rest_api - Failing get https://192.87.102.20:9443/NSI/openflow.netherlight.net:2016.nml.xml
-INFO - 2016-10-21 05:21:34,964 - werkzeug - 127.0.0.1 - - [21/Oct/2016 05:21:34] "GET /nsi/domains-full HTTP/1.1" 200 -
+INFO - 2016-10-21 06:14:11,174 - root - restarting the module
+INFO - 2016-10-21 06:14:11,301 - werkzeug -  * Running on http://127.0.0.1:9001/
+WARNING - 2016-10-21 06:14:20,614 - port_retrieval - Port not found None for portgroup urn:ogf:network:krlight.net:2013:if-krlight-jgn-x
+INFO - 2016-10-21 06:14:20,902 - rest_api - Getting https://bod.acc.dlp.surfnet.nl/nsi-topology/netherlight-testbed7
+INFO - 2016-10-21 06:14:20,903 - rest_api - Getting https://southernlight.net.br:9443/NSI/southernlight.net.br:2013.nml.xml
+INFO - 2016-10-21 06:14:20,903 - rest_api - Getting http://bodportal.geant.net:8080/autobahn-ts/export/network/urn:ogf:network:geant.net:2013:topology
+INFO - 2016-10-21 06:14:20,904 - rest_api - Getting http://idc.cipo.rnp.br/rnp-topology.xml
+INFO - 2016-10-21 06:14:20,905 - rest_api - Getting https://pmri061.it.northwestern.edu:9443/NSI/icair.org:2013.nml.xml
+INFO - 2016-10-21 06:14:20,906 - rest_api - Getting https://nsi.ampath.net:9443/NSI/ampath.net:2013.nml.xml
+INFO - 2016-10-21 06:14:20,907 - rest_api - Getting https://nsa.uvalight.net:9443/NSI/uvalight.net:2013.nml.xml
+INFO - 2016-10-21 06:14:20,907 - rest_api - Getting https://bod.netherlight.net/nsi-topology/production7
+INFO - 2016-10-21 06:14:20,908 - rest_api - Getting http://ns.ps.jgn-x.jp/NSI/jgn-x_jp_2013_nml.xml
+INFO - 2016-10-21 06:14:20,909 - rest_api - Getting https://bod.surfnet.nl/nsi-topology/netherlight7
+INFO - 2016-10-21 06:14:20,910 - rest_api - Getting https://163.220.30.174:28443/NSI/aist.go.jp:2013:nml.xml
+INFO - 2016-10-21 06:14:20,910 - rest_api - Getting https://nsi0.lsanca.pacificwave.net:9443/NSI/lsanca.pacificwave.net:2016.nml.xml
+INFO - 2016-10-21 06:14:20,911 - rest_api - Getting https://opennsa.cesnet.cz:9443/NSI/czechlight.cesnet.cz:2013.nml.xml
+INFO - 2016-10-21 06:14:20,912 - rest_api - Getting https://nsi.twaren.net:9443/NSI/twaren.nchc.org:2014.nml.xml
+INFO - 2016-10-21 06:14:20,913 - rest_api - Getting https://192.87.102.20:9443/NSI/openflow.netherlight.net:2016.nml.xml
+INFO - 2016-10-21 06:14:20,931 - rest_api - Failing get https://nsa.uvalight.net:9443/NSI/uvalight.net:2013.nml.xml
+INFO - 2016-10-21 06:14:20,988 - rest_api - Data retrieved from https://opennsa.cesnet.cz:9443/NSI/czechlight.cesnet.cz:2013.nml.xml
+INFO - 2016-10-21 06:14:21,021 - rest_api - Data retrieved from https://bod.acc.dlp.surfnet.nl/nsi-topology/netherlight-testbed7
+INFO - 2016-10-21 06:14:21,042 - rest_api - Data retrieved from https://bod.netherlight.net/nsi-topology/production7
+INFO - 2016-10-21 06:14:21,050 - rest_api - Data retrieved from https://bod.surfnet.nl/nsi-topology/netherlight7
+INFO - 2016-10-21 06:14:21,112 - rest_api - Data retrieved from http://bodportal.geant.net:8080/autobahn-ts/export/network/urn:ogf:network:geant.net:2013:topology
+INFO - 2016-10-21 06:14:21,237 - rest_api - Failing get https://nsi.twaren.net:9443/NSI/twaren.nchc.org:2014.nml.xml
+INFO - 2016-10-21 06:14:21,465 - rest_api - Data retrieved from https://pmri061.it.northwestern.edu:9443/NSI/icair.org:2013.nml.xml
+INFO - 2016-10-21 06:14:21,697 - rest_api - Data retrieved from https://nsi0.lsanca.pacificwave.net:9443/NSI/lsanca.pacificwave.net:2016.nml.xml
+INFO - 2016-10-21 06:14:21,749 - rest_api - Data retrieved from http://ns.ps.jgn-x.jp/NSI/jgn-x_jp_2013_nml.xml
+INFO - 2016-10-21 06:14:21,786 - rest_api - Data retrieved from http://idc.cipo.rnp.br/rnp-topology.xml
+INFO - 2016-10-21 06:14:21,915 - rest_api - Failing get https://192.87.102.20:9443/NSI/openflow.netherlight.net:2016.nml.xml
+INFO - 2016-10-21 06:14:22,036 - rest_api - Data retrieved from https://163.220.30.174:28443/NSI/aist.go.jp:2013:nml.xml
+INFO - 2016-10-21 06:14:22,088 - rest_api - Data retrieved from https://southernlight.net.br:9443/NSI/southernlight.net.br:2013.nml.xml
+INFO - 2016-10-21 06:14:40,916 - rest_api - Failing get https://nsi.ampath.net:9443/NSI/ampath.net:2013.nml.xml
+INFO - 2016-10-21 06:14:40,927 - werkzeug - 127.0.0.1 - - [21/Oct/2016 06:14:40] "GET /nsi/domains-full HTTP/1.1" 200 -

@@ -62,12 +62,14 @@ Documents presenting OGF NSI Topology Service:
                     
     4. GET /nsi/domains-full
     
-        Get list of NSI domains and its ports.
+        Get list of NSI domains, ports and vlans. 
+        The request is time-consuming because many NSI domains must be queried for information.
         
         Returns:
             1. HTTP code 200 and JSON object of URN identifiers of URN identifiers domains and ports
-                    (eg.: {"pionier.net.pl": ["PORT_TO_PIONIER", "felix-ge-1-0-9", "host2"],
-                            "heanet.ie":["HEAnet-HRB-port", "HEANET-gsn-epa-port"]})
+                    (eg.: {"pionier.net.pl": {"PORT_TO_PIONIER": {"vlans_in": "1720-1729,3400-3499", "vlans_out": "1720-1729,3400-3499"},
+                                                    "felix-ge-1-0-9":  { "vlans_in": "1780-1799", "vlans_out": "1780-1799"}},
+                            "heanet.ie":{"HEAnet-HRB-port":{"vlans_in": "555","vlans_out": "555"}}})
                             
     5. GET /doc 
     

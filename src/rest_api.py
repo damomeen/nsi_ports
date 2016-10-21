@@ -122,7 +122,9 @@ def get_domains_full():
         try:
             domain, url = domain_url
             app.logger.info("Getting %s",url)
-            return domain, urllib2.urlopen(url).read()
+            data = urllib2.urlopen(url, timeout=1).read()
+            app.logger.info("Data retrieved from %s", url)
+            return domain, data
         except EnvironmentError as e:
             app.logger.info("Failing get %s", url)
             return domain, None
