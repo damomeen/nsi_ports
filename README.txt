@@ -35,7 +35,7 @@ Documents presenting OGF NSI Topology Service:
             1. HTTP code 200 and JSON list of URN identifiers of NSI domains registered in NSI AG
                     (eg.: ["urn:ogf:network:geant.net:2013:topology", "urn:ogf:network:heanet.ie:2013:topology"])
             
-    2. GET /nsi/domains/<domain_name>
+    2. GET /nsi/domains/<domain_name>/ports
     
         Get list of ports (Service Termination Points -STPs) in given NSI domain.
         
@@ -47,14 +47,14 @@ Documents presenting OGF NSI Topology Service:
             1. HTTP code 200 and JSON list of URN identifiers of NSI ports in the domain
                     (eg.: ["PORT_TO_PIONIER", "felix-ge-1-0-9'", "MDVPN__lab__port"])
                     
-    3. GET /nsi/domains/<domain_name>/port/<port_name>
+    3. GET /nsi/domains/<domain_name>/ports/<port_name>
         Get list of vlans in given port in the domain.
         
         Attributes:
             - domain_name: [string] URN identifier of of NSI domain 
                     (eg.: 'urn:ogf:network:pionier.net.pl:2013:topology')
             - port_name: [string] port name 
-                    (eg.: 'elix-ge-1-0-9')
+                    (eg.: 'felix-ge-1-0-9')
     
         Returns:
             1. HTTP code 200 and JSON object of VLAN properties of the port
@@ -70,11 +70,6 @@ Documents presenting OGF NSI Topology Service:
                     (eg.: {"pionier.net.pl": {"PORT_TO_PIONIER": {"vlans_in": "1720-1729,3400-3499", "vlans_out": "1720-1729,3400-3499"},
                                                     "felix-ge-1-0-9":  { "vlans_in": "1780-1799", "vlans_out": "1780-1799"}},
                             "heanet.ie":{"HEAnet-HRB-port":{"vlans_in": "555","vlans_out": "555"}}})
-                            
-    5. GET /doc 
-    
-        Generates HTML documentation of exposed REST API
-        
         
         
 2. Installation
@@ -84,11 +79,11 @@ Documents presenting OGF NSI Topology Service:
 Needs Python and Flask installed:
     - Python 2.7 (https://www.python.org/)
     - Flask 0.11.1 (http://flask.pocoo.org)
-    - Flask-Autodoc 0.1.2 (https://github.com/acoomans/flask-autodoc)
+    - flasgger 0.5.2 (https://github.com/rochacbruno/flasgger)
     - xmltodict 0.10.2 (https://pypi.python.org/pypi/xmltodict)
     
     1. Install python libraries by pip:
-        pip install Flask Flask-Autodoc xmltodict
+        pip install Flask flasgger xmltodict
         
 2.2 Download 'nsi_ports' from github
     
@@ -128,8 +123,8 @@ Needs Python and Flask installed:
     2. stop 'nsi_ports' service from any location:
         nsi_ports stop
         
-    3. check REST API documentation in web browser:
-        http://localhost:9000/doc
+    3. check Swagger API documentation in web browser:
+        http://150.254.160.153:9001/apidocs/index.html
         
     4. make testing usage of REST API:
         curl http://localhost:9001/nsi/domains

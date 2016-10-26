@@ -2,12 +2,12 @@ import logging, pickle, threading, urllib2
 from multiprocessing.dummy import Pool
 from flask import Flask, jsonify
 from json import dumps
-from flask.ext.autodoc import Autodoc
+from flasgger import Swagger
 from port_retrieval import get_nsi_topology, parse_ports
 
 
 app = Flask(__name__)
-auto = Autodoc(app)
+Swagger(app)
 
 topology_lock = threading.Lock()
 
@@ -18,13 +18,20 @@ TOPOLOGY_FILENAME = 'topology.pkl'
 
 
 @app.route("/nsi/domains")
-@auto.doc()
 def get_domains():
-    """Get list of NSI domains registeres in NSI AG
-        
-    Returns:
-        1. HTTP code 200 and JSON list of URN identifiers of NSI domains registered in NSI AG
-                (eg.: ["urn:ogf:network:geant.net:2013:topology", "urn:ogf:network:heanet.ie:2013:topology"])
+    """
+    Get list of NSI domains registered in NSI AG
+    --- 
+    tags:
+        - NSI domains
+    responses:
+        200:
+            description: Returns list of URN identifiers of NSI domains registered in NSI AG
+            schema: 
+                type: array
+                items:
+                    description: URI identifier of NSI domain, example urn:ogf:network:pionier.net.pl:2013:topology
+                    type: string
     """  
     topology = get_nsi_topology(app.config["dds_service"])
     with topology_lock:
@@ -37,18 +44,26 @@ def get_domains():
 
 
 
-@app.route("/nsi/domains/<domain>")
-@auto.doc()
+@app.route("/nsi/domains/<string:domain>/ports")
 def get_domain_ports(domain):
-    """Get list of ports (Service Termination Points -STPs) in given NSI domain.
-        
-    Attributes:
-        - domain: [string] URN identifier of of NSI domain 
-                (eg.: 'urn:ogf:network:pionier.net.pl:2013:topology')
-    
-    Returns:
-        1. HTTP code 200 and JSON list of URN identifiers of NSI ports in the domain
-                (eg.: ["PORT_TO_PIONIER", "felix-ge-1-0-9'", "MDVPN__lab__port"])
+    """
+    Get list of ports in given NSI domain
+    ---
+    tags:
+        - NSI domains
+    parameters:
+        -   name: domain
+            in: path
+            description: URN identifier of NSI domain, example urn:ogf:network:pionier.net.pl:2013:topology
+            type: string
+    responses:
+        200: 
+            description: list of URN identifiers of ports in the NSI domain
+            schema:
+                type: array
+                items:
+                    description: port name
+                    type: string
     """
     ports = {}
     try:
@@ -71,20 +86,37 @@ def get_domain_ports(domain):
         
         
     
-@app.route("/nsi/domains/<domain>/port/<port>")
-@auto.doc()
+@app.route("/nsi/domains/<string:domain>/ports/<string:port>")
 def get_domain_port_vlans(domain, port):
-    """Get list of vlans in given port in the domain.
-        
-    Attributes:
-        - domain: [string] URN identifier of of NSI domain 
-                (eg.: 'urn:ogf:network:pionier.net.pl:2013:topology')
-        - port: [string] port name 
-                (eg.: 'elix-ge-1-0-9')
-    
-    Returns:
-        1. HTTP code 200 and JSON object of VLAN properties of the port
-                (eg.: {"vlans_in": "4-4096", "vlans_out": "4-4096")
+    """
+    Get vlans for given port in the NSI domain
+    ---   
+    tags:
+        - NSI domains    
+    parameters:
+        -   name: domain
+            description: URN identifier of NSI domain, example urn:ogf:network:pionier.net.pl:2013:topology
+            in: path
+            type: string
+            required: true
+        -   name: port
+            in: path
+            description: port name
+            type: string
+            required: true            
+    responses:
+        200: 
+            description: VLAN properties of the port
+            schema:
+                properties:
+                    vlans_in:
+                        type: string
+                        description: list of incoming VLANs acceptable for NSI domain, example 4-2000,3000-4096
+                        required: true
+                    vlans_out:
+                        type: string
+                        description: list of outgoing VLANs acceptable for NSI domain, example 4-2000,3000-4096
+                        required: true
     """
     try:
         with topology_lock:
@@ -95,14 +127,15 @@ def get_domain_port_vlans(domain, port):
         
         
 @app.route("/nsi/domains-full")
-@auto.doc()
 def get_domains_full():
-    """Get list of NSI domains and its ports.
-        
-    Returns:
-        1. HTTP code 200 and JSON object of URN identifiers of URN identifiers domains and ports
-                (eg.: {"pionier.net.pl": ["PORT_TO_PIONIER", "felix-ge-1-0-9", "host2"],
-                        "heanet.ie":["HEAnet-HRB-port", "HEANET-gsn-epa-port"]})
+    """
+    Get list of NSI domains and its ports
+    ---
+    tags:
+        - NSI domains
+    responses:
+        200:
+            description: Returns list of NSI domains, its ports and vlan attributes
     """
     topology = get_nsi_topology(app.config["dds_service"])
     with topology_lock:
@@ -137,10 +170,3 @@ def get_domains_full():
             
     return jsonify(topology)
     
-    
-    
-@app.route('/doc')
-@auto.doc()
-def documentation():
-    """Generates HTML documentation of exposed REST API"""
-    return auto.html(title='NSI ports REST API documentation')

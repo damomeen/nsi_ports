@@ -44,7 +44,7 @@ class ModuleDaemon(Daemon):
         try:
             # starting interfaces threads
             app.config["dds_service"] = self.config["dds_service"]
-            app.run(port=self.config["port"])
+            app.run(host='0.0.0.0', port=self.config["port"])
         except:
             import traceback
             self.logger.error("Exception" + traceback.format_exc())
