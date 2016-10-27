@@ -124,7 +124,7 @@ Needs Python and Flask installed:
         nsi_ports stop
         
     3. check Swagger API documentation in web browser:
-        http://150.254.160.153:9001/apidocs/index.html
+        http://localhost:9001/apidocs/index.html
         
     4. make testing usage of REST API:
         curl http://localhost:9001/nsi/domains

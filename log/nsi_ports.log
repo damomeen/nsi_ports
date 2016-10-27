@@ -1,9 +1,0 @@
-DEBUG - 2016-10-26 06:12:01,608 - root - Config is {
-    "port":9001,
-    "dds_service": "https://agg.netherlight.net/dds"
-}
-
-INFO - 2016-10-26 06:12:01,608 - root - restarting the module
-INFO - 2016-10-26 06:12:01,726 - werkzeug -  * Running on http://0.0.0.0:9001/
-INFO - 2016-10-26 06:12:07,688 - werkzeug - 150.254.169.102 - - [26/Oct/2016 06:12:07] "GET /specs HTTP/1.1" 200 -
-INFO - 2016-10-26 06:12:12,931 - werkzeug - 150.254.169.102 - - [26/Oct/2016 06:12:12] "GET /spec HTTP/1.1" 200 -
